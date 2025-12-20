@@ -1,5 +1,5 @@
 .vscode
-build
+/build/
 host/__pycache__
 host/standalone
 host/nxdt_host*
@@ -26,3 +26,5 @@ main.cpp
 
 # macOS
 *.DS_Store
+
+/out/
