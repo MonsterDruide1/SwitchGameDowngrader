@@ -59,9 +59,9 @@ ifeq (,$(GIT_COMMIT))
     $(error GIT_COMMIT is empty)
 endif
 
-VERSION_MAJOR		:=	2
+VERSION_MAJOR		:=	0
 VERSION_MINOR		:=	0
-VERSION_MICRO		:=	0
+VERSION_MICRO		:=	1
 
 APP_TITLE			:=	SwitchGameDowngrader
 APP_AUTHOR			:=	MonsterDruide1
