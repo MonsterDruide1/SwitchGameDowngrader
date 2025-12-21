@@ -21,20 +21,21 @@
 
 #pragma once
 
-#ifndef __GAMECARD_IMAGE_DUMP_TASK_FRAME_HPP__
-#define __GAMECARD_IMAGE_DUMP_TASK_FRAME_HPP__
+#ifndef __DOWNGRADE_TASK_FRAME_HPP__
+#define __DOWNGRADE_TASK_FRAME_HPP__
 
 #include "data_transfer_task_frame.hpp"
-#include "../tasks/gamecard_image_dump_task.hpp"
+#include "downgrade_success_reinsert_popup.hpp"
+#include "../tasks/downgrade_task.hpp"
 
 namespace nxdt::views
 {
-    class GameCardImageDumpTaskFrame: public DataTransferTaskFrame<nxdt::tasks::GameCardImageDumpTask>
+    class DowngradeTaskFrame: public DataTransferTaskFrame<nxdt::tasks::DowngradeTask>
     {
         protected:
             /* Set class as non-copyable and non-moveable. */
-            NON_COPYABLE(GameCardImageDumpTaskFrame);
-            NON_MOVEABLE(GameCardImageDumpTaskFrame);
+            NON_COPYABLE(DowngradeTaskFrame);
+            NON_MOVEABLE(DowngradeTaskFrame);
 
             bool GetTaskResult(std::string& error_msg) override final
             {
@@ -48,11 +49,16 @@ namespace nxdt::views
                 return true;
             }
 
+            void onComplete(void) override final
+            {
+                DowngradeSuccessPopup::show(true);
+            }
+
         public:
             template<typename... Params>
-            GameCardImageDumpTaskFrame(Params... params) :
-                DataTransferTaskFrame<nxdt::tasks::GameCardImageDumpTask>(brls::i18n::getStr("gamecard_tab/list/dump_card_image/label"), params...) { }
+            DowngradeTaskFrame(Params... params) :
+                DataTransferTaskFrame<nxdt::tasks::DowngradeTask>("Downgrade", params...) { }
     };
 }
 
-#endif  /* __GAMECARD_IMAGE_DUMP_TASK_FRAME_HPP__ */
+#endif  /* __DOWNGRADE_TASK_FRAME_HPP__ */

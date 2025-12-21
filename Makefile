@@ -63,13 +63,12 @@ VERSION_MAJOR		:=	2
 VERSION_MINOR		:=	0
 VERSION_MICRO		:=	0
 
-APP_TITLE			?=	nxdumptool
-APP_AUTHOR			?=	DarkMatterCore
-APP_VERSION			?=	${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
+APP_TITLE			:=	SwitchGameDowngrader
+APP_AUTHOR			:=	MonsterDruide1
+APP_VERSION			:=	${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
 
 # TODO: remove this after the PoC builds are no longer needed.
-BUILD_TYPE			?=	nxdumptool
-
+BUILD_TYPE			:=	SwitchGameDowngrader
 BUILD_TIMESTAMP		:=	$(strip $(shell date --utc '+%Y-%m-%d %T UTC'))
 
 TARGET				:=	${BUILD_TYPE}

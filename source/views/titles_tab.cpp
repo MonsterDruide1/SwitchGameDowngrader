@@ -20,6 +20,7 @@
  */
 
 #include <views/titles_tab.hpp>
+#include <views/downgrade_options_frame.hpp>
 
 using namespace brls::i18n::literals;   /* For _i18n. */
 
@@ -136,9 +137,11 @@ namespace nxdt::views
             item->getClickEvent()->subscribe([](brls::View *view) {
                 TitlesTabItem *item = static_cast<TitlesTabItem*>(view);
                 const TitleApplicationMetadata *item_app_metadata = item->GetApplicationMetadata();
+                brls::Application::pushView(new DowngradeOptionsFrame(item_app_metadata), brls::ViewAnimation::SLIDE_LEFT);
+
+                /*
                 bool is_system = item->IsSystemTitle();
 
-                /* Create popup. */
                 TitlesTabPopup *popup = nullptr;
 
                 try {
@@ -149,7 +152,6 @@ namespace nxdt::views
                     return;
                 }
 
-                /* Display popup. */
                 std::string name = std::string(item_app_metadata->name);
                 std::string tid = fmt::format("{:016X}", item_app_metadata->title_id);
                 std::string sub_left = (!is_system ? std::string(item_app_metadata->publisher) : tid);
@@ -161,6 +163,7 @@ namespace nxdt::views
                 } else {
                     brls::PopupFrame::open(name, popup, sub_left, sub_right);
                 }
+                */
             });
 
             /* Add list item to our view. */

@@ -20,7 +20,7 @@
 
     "update_app": {
         "label": "Update application",
-        "description": "Checks if an update is available in nxdumptool's GitHub repository. Requires an Internet connection.",
+        "description": "Checks if an update is available in SwitchGameDowngrader's GitHub repository. Requires an Internet connection.",
         "frame": {
             "please_wait": "Please wait…",
             "release_details": "Commit hash: {0:.7}\nRelease date: {1} UTC+0",
