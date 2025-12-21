@@ -1276,7 +1276,7 @@ bool utilsParseGitHubReleaseJsonData(const char *json_buf, size_t json_buf_size,
 
     if (!out->download_url)
     {
-        LOG_MSG_ERROR("Failed to retrieve required elements from the provided JSON!");
+        LOG_MSG_ERROR("Failed to retrieve download URL from the provided JSON!");
         goto end;
     }
 

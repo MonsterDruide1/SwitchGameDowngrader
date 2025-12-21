@@ -2,17 +2,8 @@ name: Build SwitchGameDowngrader binary
 
 on:
   push:
-    branches: [ main2 ]
-
-    paths:
-      - '.github/workflows/rewrite.yml'
-      - 'code_templates/**'
-      - 'include/**'
-      - 'libs/**'
-      - 'romfs/**'
-      - 'source/**'
-      - 'build.sh'
-      - 'Makefile'
+    tags:
+      - '*'
 
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
@@ -36,11 +27,9 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          path: nxdumptool
           submodules: recursive
 
       - name: Build binary
-        working-directory: nxdumptool
         run: |
           make -j8
 
@@ -48,22 +37,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nxdt_rw_poc-${{ env.nxdt_commit }}.nro
-          path: nxdumptool/SwitchGameDowngrader.nro
+          path: SwitchGameDowngrader.nro
           if-no-files-found: error
 
       - name: Upload ELF artifact
         uses: actions/upload-artifact@v4
         with:
           name: nxdt_rw_poc-${{ env.nxdt_commit }}.elf
-          path: nxdumptool/SwitchGameDowngrader.elf
+          path: SwitchGameDowngrader.elf
           if-no-files-found: error
 
       - name: Upload artifacts to pre-release
         uses: ncipollo/release-action@v1
         with:
-          # Only update attachments on "rewrite-prerelease" tag.
           prerelease: True
-          tag: "rewrite-prerelease"
+          tag: ${{ github.ref_name }}
           updateOnlyUnreleased: True
           # Remove old artifacts and replace with new ones.
           removeArtifacts: False
@@ -73,6 +61,5 @@ jobs:
           omitBody: True
           omitBodyDuringUpdate: True
           omitNameDuringUpdate: True
-          artifacts: "nxdumptool/SwitchGameDowngrader.*"
-          #artifacts: "nxdumptool/code_templates/tmp/nxdt_rw_poc.*, nxdumptool/nxdumptool.*"
+          artifacts: "SwitchGameDowngrader.*"
           token: ${{ secrets.GITHUB_TOKEN }}
