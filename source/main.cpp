@@ -56,9 +56,9 @@ int main(int argc, char *argv[])
             /* Push crash frame with the applet mode warning. */
             brls::Application::pushView(new brls::CrashFrame("generic/applet_mode_warning"_i18n, [](brls::View *view) {
                 /* Swap crash frame with root view whenever the crash frame button is clicked. */
-                //brls::Application::swapView(new nxdt::views::RootView());
+                brls::Application::swapView(new nxdt::views::RootView());
                 /* TODO: restore original behavior after fixing the applet mode issues. */
-                brls::Application::quit();
+                //brls::Application::quit();
             }));
         } else {
             /* Push root view. */
@@ -66,6 +66,10 @@ int main(int argc, char *argv[])
         }
 
         /* Run the application. */
+        while(brls::Application::mainLoop());
+    } catch(const std::exception& e) {
+        LOG_MSG_ERROR("Exception caught! (%s).", e.what());
+        brls::Application::crash(i18n::getStr("generic/exception_caught", e.what()));
         while(brls::Application::mainLoop());
     } catch (...) {
         std::exception_ptr p = std::current_exception();

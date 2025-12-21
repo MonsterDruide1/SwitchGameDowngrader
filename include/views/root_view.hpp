@@ -47,14 +47,10 @@ namespace nxdt::views
             brls::Label *time_lbl = nullptr;
             brls::Label *battery_icon = nullptr, *battery_percentage = nullptr;
             brls::Label *connection_icon = nullptr, *connection_status_lbl = nullptr;
-            brls::Label *usb_icon = nullptr, *ums_counter_lbl = nullptr;
-            brls::Label *cable_icon = nullptr, *usb_host_speed_lbl = nullptr;
 
             nxdt::tasks::StatusInfoTask *status_info_task = nullptr;
             nxdt::tasks::GameCardStatusTask *gc_status_task = nullptr;
             nxdt::tasks::TitleMetadataTask *title_metadata_task = nullptr;
-            nxdt::tasks::UmsTask *ums_task = nullptr;
-            nxdt::tasks::UsbHostTask *usb_host_task = nullptr;
 
             nxdt::tasks::StatusInfoEvent::Subscription status_info_task_sub;
             nxdt::tasks::UmsEvent::Subscription ums_task_sub;
@@ -100,21 +96,9 @@ namespace nxdt::views
                 return this->title_metadata_task->GetApplicationMetadataInfo(is_system);
             }
 
-            ALWAYS_INLINE const nxdt::tasks::UmsDeviceVector& GetUmsDevices(void)
-            {
-                return this->ums_task->GetUmsDevices();
-            }
-
-            ALWAYS_INLINE const UsbHostSpeed& GetUsbHostSpeed(void)
-            {
-                return this->usb_host_task->GetUsbHostSpeed();
-            }
-
             EVENT_SUBSCRIPTION(StatusInfoTask, StatusInfoEvent, status_info_task);
             EVENT_SUBSCRIPTION(GameCardStatusTask, GameCardStatusEvent, gc_status_task);
             EVENT_SUBSCRIPTION(TitleMetadataTask, UserTitleEvent, title_metadata_task);
-            EVENT_SUBSCRIPTION(UmsTask, UmsEvent, ums_task);
-            EVENT_SUBSCRIPTION(UsbHostTask, UsbHostEvent, usb_host_task);
     };
 }
 

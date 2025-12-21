@@ -1,7 +1,7 @@
 ﻿{
     "description": "Nintendo Switch Dump Tool",
 
-    "copyright": "Licensed under GPLv3+\n\u00A9 2020 - 2024 {0}\n{1}",
+    "copyright": "Licensed under GPLv3+\n\u00A9 2020 - 2025 {0}\n{1}",
 
     "dependencies": {
         "header":  "Dependencies",
@@ -14,22 +14,24 @@
 
     "acknowledgments": {
         "header":  "Acknowledgments",
-        "line_00": "\uE016  Switchbrew and libnx contributors.",
-        "line_01": "\uE016  SciresM, for hactool, hac2l and Atmosphère-NX.",
-        "line_02": "\uE016  Moosehunter, for LibHac and hactoolnet.",
-        "line_03": "\uE016  shchmue, for the runtime key derivation algorithm, as well as helping with reverse engineering tasks.",
-        "line_04": "\uE016  Adubbz, for Tinfoil and its ES service bindings.",
-        "line_05": "\uE016  RattletraPM, for the awesome icon.",
-        "line_06": "\uE016  Whovian9369, for being a key piece throughout the whole development by providing lots of testing and cool ideas.",
-        "line_07": "\uE016  liamadvance, Shadów and SimonTime, for their tremendous help in understanding Nintendo Switch file and data formats.",
-        "line_08": "\uE016  The folks from No-Intro.org, for being kind enough to put up a public API to perform online checksum lookups.",
-        "line_09": "\uE016  The folks at the nxdumptool Discord server.",
-        "line_10": "\uE016  The Comfy Boyes, for always being awesome and supportive. You know who you are.",
-        "line_11": "\uE016  And, at last but not least, you! Thank you for using my work!"
+        "line_00": "\uE016  DarkMatterCore for nxdumptool and Borealis, as well as many underlying libraries.",
+        "line_01": "\uE016  Shadów and Istador for the original odyssey-downgrade.",
+        "line_02": "\uE016  Switchbrew and libnx contributors.",
+        "line_03": "\uE016  SciresM, for hactool, hac2l and Atmosphère-NX.",
+        "line_04": "\uE016  Moosehunter, for LibHac and hactoolnet.",
+        "line_05": "\uE016  shchmue, for the runtime key derivation algorithm, as well as helping with reverse engineering tasks.",
+        "line_06": "\uE016  Adubbz, for Tinfoil and its ES service bindings.",
+        "line_07": "\uE016  RattletraPM, for the awesome icon.",
+        "line_08": "\uE016  Whovian9369, for being a key piece throughout the whole development by providing lots of testing and cool ideas.",
+        "line_09": "\uE016  liamadvance, Shadów and SimonTime, for their tremendous help in understanding Nintendo Switch file and data formats.",
+        "line_10": "\uE016  The folks from No-Intro.org, for being kind enough to put up a public API to perform online checksum lookups.",
+        "line_11": "\uE016  The folks at the nxdumptool Discord server.",
+        "line_12": "\uE016  The Comfy Boyes, for always being awesome and supportive. You know who you are.",
+        "line_13": "\uE016  And, at last but not least, you! Thank you for using my work!"
     },
 
     "links": {
         "header":  "Additional links and resources",
-        "line_00": "\uE016  Discord server: {0}."
+        "line_00": "\uE016  Message me via Discord: @MonsterDruide1."
     }
 }

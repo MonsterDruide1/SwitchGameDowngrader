@@ -94,11 +94,7 @@ namespace nxdt::views
 
                         if (ret)
                         {
-                            /* Store notification message. */
-                            this->notification = brls::i18n::getStr("generic/process_complete");
-
-                            /* Pop view. */
-                            this->onCancel();
+                            this->onComplete();
                         } else {
                             /* Update B button label. */
                             this->updateActionHint(brls::Key::B, brls::i18n::getStr("brls/hints/back"));
@@ -135,6 +131,14 @@ namespace nxdt::views
             /* Must be implemented by derived classes to determine if the background task succeeded or not by calling GetResult() on their own. */
             /* If the task failed, false shall be returned and `error_msg` shall be updated to reflect the error reason. */
             virtual bool GetTaskResult(std::string& error_msg) = 0;
+
+            virtual void onComplete(void) {
+                /* Store notification message. */
+                this->notification = brls::i18n::getStr("generic/process_complete");
+
+                /* Pop view. */
+                this->onCancel();
+            }
 
         public:
             template<typename... Params>
