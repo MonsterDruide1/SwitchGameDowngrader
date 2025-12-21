@@ -64,7 +64,7 @@ namespace nxdt::views
                     brls::Label* label = new brls::Label(brls::LabelStyle::REGULAR, "WARNING: No downgrade data available for this title.", true);
                     label->setColor(nvgRGB(255, 0, 0));
                     this->list->addView(label);
-                    brls::Label* info_label = new brls::Label(brls::LabelStyle::DESCRIPTION, "You may still attempt to downgrade this title, but it may lead to crashes on launch. If that happens, come back here and undo the downgrade.", true);
+                    brls::Label* info_label = new brls::Label(brls::LabelStyle::DESCRIPTION, "You may still attempt to downgrade this title, but it may lead to crashes on launch. If that happens, come back here and undo the downgrade.\n\nIf you are a developer or modder for this game and want to help me add support for this game, contact me (@MonsterDruide1) on Discord!", true);
                     this->list->addView(info_label);
                 } else {
                     brls::Label* label = new brls::Label(brls::LabelStyle::REGULAR, "Good news: This title can be downgraded!", true);
