@@ -43,16 +43,11 @@ include $(DEVKITPRO)/libnx/switch_rules
 
 ROOTDIR				?=	$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-GIT_BRANCH			:=	$(strip $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null))
 GIT_COMMIT			:=	$(strip $(shell git rev-parse --short HEAD 2>/dev/null))
-GIT_REV				:=	${GIT_BRANCH}-${GIT_COMMIT}
+GIT_REV				:=	${GIT_COMMIT}
 
 ifneq (,$(strip $(shell git status --porcelain 2>/dev/null)))
 GIT_REV				:=	$(GIT_REV)-dirty
-endif
-
-ifeq (,$(GIT_BRANCH))
-    $(error GIT_BRANCH is empty)
 endif
 
 ifeq (,$(GIT_COMMIT))
@@ -93,7 +88,7 @@ ARCH		:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
 CFLAGS		:=	-g -Wall -Werror -O2 -flto -ffunction-sections $(ARCH) $(DEFINES) $(INCLUDE) -D__SWITCH__
 CFLAGS		+=	-DVERSION_MAJOR=${VERSION_MAJOR} -DVERSION_MINOR=${VERSION_MINOR} -DVERSION_MICRO=${VERSION_MICRO}
 CFLAGS		+=	-DAPP_TITLE="\"${APP_TITLE}\"" -DAPP_AUTHOR="\"${APP_AUTHOR}\"" -DAPP_VERSION="\"${APP_VERSION}\""
-CFLAGS		+=	-DGIT_BRANCH="\"${GIT_BRANCH}\"" -DGIT_COMMIT="\"${GIT_COMMIT}\"" -DGIT_REV="\"${GIT_REV}\""
+CFLAGS		+=	-DGIT_COMMIT="\"${GIT_COMMIT}\"" -DGIT_REV="\"${GIT_REV}\""
 CFLAGS		+=	-DBUILD_TIMESTAMP="\"${BUILD_TIMESTAMP}\"" -DBOREALIS_RESOURCES="\"${BOREALIS_RESOURCES}\"" -D_GNU_SOURCE
 CFLAGS		+=	-fmacro-prefix-map=$(ROOTDIR)=
 
