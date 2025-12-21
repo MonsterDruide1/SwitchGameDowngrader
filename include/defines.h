@@ -83,7 +83,7 @@
 #define DEVOPTAB_SDMC_DEVICE            "sdmc:"
 
 #define HBMENU_BASE_PATH                "/switch/"
-#define APP_BASE_PATH                   HBMENU_BASE_PATH APP_TITLE "/"
+#define APP_BASE_PATH                   HBMENU_BASE_PATH
 
 #define GAMECARD_SUBDIR                 "Gamecard"
 #define HFS_SUBDIR                      "HFS"

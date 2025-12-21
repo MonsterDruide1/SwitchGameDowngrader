@@ -321,11 +321,11 @@ void utilsCloseResources(void)
 
         /* Replace application NRO (if needed). */
         /* TODO: uncomment this block whenever we're ready for a release. */
-        /*if (g_resourcesInit && g_appUpdated)
+        if (g_resourcesInit && g_appUpdated)
         {
             remove(NRO_PATH);
             rename(NRO_TMP_PATH, NRO_PATH);
-        }*/
+        }
 
         /* Close logfile. */
         logCloseLogFile();
