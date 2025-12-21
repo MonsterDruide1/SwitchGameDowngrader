@@ -1,8 +1,8 @@
-name: Build nxdumptool-rewrite binary
+name: Build SwitchGameDowngrader binary
 
 on:
   push:
-    branches: [ rewrite ]
+    branches: [ main2 ]
 
     paths:
       - '.github/workflows/rewrite.yml'
@@ -33,70 +33,32 @@ jobs:
         run: |
           echo "nxdt_commit=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
-      - name: Clone nxdumptool repository
+      - name: Clone repository
         uses: actions/checkout@v4
         with:
           path: nxdumptool
           submodules: recursive
 
-      - name: Build nxdumptool-rewrite PoC binary
-        id: build
-        continue-on-error: true
-        working-directory: nxdumptool
-        run: |
-          chmod +x ./build.sh
-          ./build.sh --noconfirm
-
-      - name: Clone libnx repository
-        if: ${{ steps.build.outcome == 'failure' }}
-        uses: actions/checkout@v4
-        with:
-          repository: switchbrew/libnx
-          path: libnx
-          submodules: recursive
-
-      - name: Install latest libnx commit and retry build
-        if: ${{ steps.build.outcome == 'failure' }}
-        run: |
-          cd "$GITHUB_WORKSPACE/libnx"
-          make install -j8
-          cd "$GITHUB_WORKSPACE/nxdumptool"
-          ./build.sh --noconfirm
-
-      - name: Build nxdumptool-rewrite UI binary
+      - name: Build binary
         working-directory: nxdumptool
         run: |
           make -j8
 
-      - name: Upload nxdumptool-rewrite PoC NRO artifact
+      - name: Upload NRO artifact
         uses: actions/upload-artifact@v4
         with:
           name: nxdt_rw_poc-${{ env.nxdt_commit }}.nro
-          path: nxdumptool/code_templates/tmp/nxdt_rw_poc.nro
+          path: nxdumptool/SwitchGameDowngrader.nro
           if-no-files-found: error
 
-      - name: Upload nxdumptool-rewrite PoC ELF artifact
+      - name: Upload ELF artifact
         uses: actions/upload-artifact@v4
         with:
           name: nxdt_rw_poc-${{ env.nxdt_commit }}.elf
-          path: nxdumptool/code_templates/tmp/nxdt_rw_poc.elf
+          path: nxdumptool/SwitchGameDowngrader.elf
           if-no-files-found: error
 
-      - name: Upload nxdumptool-rewrite UI NRO artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nxdumptool-rewrite-${{ env.nxdt_commit }}-WIP_UI.nro
-          path: nxdumptool/nxdumptool.nro
-          if-no-files-found: error
-
-      - name: Upload nxdumptool-rewrite UI ELF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nxdumptool-rewrite-${{ env.nxdt_commit }}-WIP_UI.elf
-          path: nxdumptool/nxdumptool.elf
-          if-no-files-found: error
-
-      - name: Upload nxdumptool-rewrite PoC artifacts to pre-release
+      - name: Upload artifacts to pre-release
         uses: ncipollo/release-action@v1
         with:
           # Only update attachments on "rewrite-prerelease" tag.
@@ -111,6 +73,6 @@ jobs:
           omitBody: True
           omitBodyDuringUpdate: True
           omitNameDuringUpdate: True
-          artifacts: "nxdumptool/code_templates/tmp/nxdt_rw_poc.*"
+          artifacts: "nxdumptool/SwitchGameDowngrader.*"
           #artifacts: "nxdumptool/code_templates/tmp/nxdt_rw_poc.*, nxdumptool/nxdumptool.*"
           token: ${{ secrets.GITHUB_TOKEN }}
