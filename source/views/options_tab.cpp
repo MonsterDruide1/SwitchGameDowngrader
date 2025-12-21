@@ -179,7 +179,7 @@ namespace nxdt::views
             if (utilsParseGitHubReleaseJsonData(this->json_buf, this->json_buf_size, &(this->json_data)))
             {
                 /* Check if the application can be updated. */
-                if (utilsIsApplicationUpdatable(this->json_data.version, this->json_data.commit_hash))
+                if (utilsIsApplicationUpdatable(this->json_data.version))
                 {
                     /* Display changelog. */
                     this->DisplayChangelog();
@@ -258,7 +258,7 @@ namespace nxdt::views
 
         /* Display release date and commit hash. */
         brls::Label *release_details_lbl = new brls::Label(brls::LabelStyle::DESCRIPTION, i18n::getStr("options_tab/update_app/frame/release_details", \
-                                                           this->json_data.commit_hash, RootView::GetFormattedDateString(this->json_data.date)), true);
+                                                           RootView::GetFormattedDateString(this->json_data.date)), true);
         release_details_lbl->setHorizontalAlign(NVG_ALIGN_CENTER);
         this->changelog_list->addView(release_details_lbl);
 

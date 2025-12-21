@@ -58,7 +58,6 @@ typedef enum : u8 {
 typedef struct {
     struct json_object *obj;    ///< JSON object. Must be freed using json_object_put().
     const char *version;        ///< Pointer to the version string, referenced by obj.
-    const char *commit_hash;    ///< Pointer to the commit hash string, referenced by obj.
     struct tm date;             ///< Release date.
     const char *changelog;      ///< Pointer to the changelog string, referenced by obj.
     const char *download_url;   ///< Pointer to the download URL string, referenced by obj.
@@ -207,7 +206,7 @@ bool utilsParseGitHubReleaseJsonData(const char *json_buf, size_t json_buf_size,
 
 /// Parses the provided version string and compares it to the application version. Returns true if the application can be updated.
 /// If both versions are equal, the provided commit hash is compared to our commit hash - if they're different, true will be returned.
-bool utilsIsApplicationUpdatable(const char *version, const char *commit_hash);
+bool utilsIsApplicationUpdatable(const char *version);
 
 /// Frees previously allocated data from a UtilsGitHubReleaseJsonData element.
 NX_INLINE void utilsFreeGitHubReleaseJsonData(UtilsGitHubReleaseJsonData *data)
