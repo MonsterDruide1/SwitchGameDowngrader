@@ -58,7 +58,7 @@ runs:
       echo "sha1sum=$hashes" >>$GITHUB_OUTPUT
   -
     name : Upload artifacts
-    uses : actions/upload-artifact@v3
+    uses : actions/upload-artifact@v4
     with:
       name              : ${{ steps.env.outputs.filename }}
       path              : ./out/
