@@ -1236,12 +1236,11 @@ bool utilsParseGitHubReleaseJsonData(const char *json_buf, size_t json_buf_size,
 
     /* Get required JSON elements. */
     out->version = jsonGetString(out->obj, "tag_name");
-    out->commit_hash = jsonGetString(out->obj, "target_commitish");
     published_at = jsonGetString(out->obj, "published_at");
     out->changelog = jsonGetString(out->obj, "body");
     assets = jsonGetArray(out->obj, "assets");
 
-    if (!out->version || !out->commit_hash || !published_at || !out->changelog || !assets)
+    if (!out->version || !published_at || !out->changelog || !assets)
     {
         LOG_MSG_ERROR("Failed to retrieve required elements from the provided JSON!");
         goto end;
@@ -1289,9 +1288,9 @@ end:
     return ret;
 }
 
-bool utilsIsApplicationUpdatable(const char *version, const char *commit_hash)
+bool utilsIsApplicationUpdatable(const char *version)
 {
-    if (!version || !*version || *version != 'v' || !commit_hash || !*commit_hash)
+    if (!version || !*version || *version != 'v')
     {
         LOG_MSG_ERROR("Invalid parameters!");
         return false;
@@ -1310,8 +1309,7 @@ bool utilsIsApplicationUpdatable(const char *version, const char *commit_hash)
         {
             if (cur_version.micro == new_version.micro)
             {
-                /* Versions are equal. Let's compare the commit hashes and return true if they're different. */
-                ret = (strncasecmp(commit_hash, GIT_COMMIT, 7) != 0);
+                ret = false;
             } else
             if (cur_version.micro < new_version.micro)
             {
