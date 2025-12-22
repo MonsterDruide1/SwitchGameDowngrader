@@ -1,2 +1,0 @@
-- update/test update procedure
-- crash when spamming "downgrade - OK on error" for non-inserted cartridge

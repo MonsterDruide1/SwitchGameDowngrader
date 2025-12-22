@@ -22,7 +22,7 @@ Steps to reproduce the behavior:
 - CFW: [e.g. Atmosphère, SX OS, etc.]
 - CFW version: [e.g. 0.11.1, 2.9.4, etc.]
 - Atmosphère launch method (if applicable): [e.g. Hekate, fusee-primary]
-- nxdumptool version: [e.g. 2.0.0]
+- SwitchGameDowngrader version: [e.g. 2.0.0]
 - Homebrew launch method: [e.g. title override, applet]
 - Source storage used with the application (if applicable): [e.g. gamecard, SD/eMMC]
 - SD card specs: [e.g. Samsung EVO 256 GB, FAT32 partition]
@@ -31,7 +31,7 @@ Steps to reproduce the behavior:
 Add screenshots to help explain your problem.
 
 **Logfile**
-If available, please upload your logfile located at `sdmc:/nxdumptool/nxdumptool.log`.
+If available, please upload your logfile located at `sdmc:/switch/SwitchGameDowngrader.log`.
 
 **Additional context**
 Add any other context about the problem here.
