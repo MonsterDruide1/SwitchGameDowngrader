@@ -94,9 +94,8 @@ namespace nxdt::tasks
 
         if (auto err = this->dumpSection(&(base_nca_ctx.fs_ctx[0]), exefs_ctx.offset, exefs_ctx.size, exefs_path.c_str(), progress); err)
             return err;
-        /*if (auto err = this->dumpSection(&(base_nca_ctx.fs_ctx[1]), romfs_ctx.offset, romfs_ctx.size, romfs_path.c_str(), progress); err)
-            return err;*/
-        svcSleepThread(1000000000);
+        if (auto err = this->dumpSection(&(base_nca_ctx.fs_ctx[1]), romfs_ctx.offset, romfs_ctx.size, romfs_path.c_str(), progress); err)
+            return err;
         if (const GameDowngradeData* item_app_metadata = getDowngradeDataForTitle(title_id); item_app_metadata != nullptr) {
             std::string patch_path = get_patch_path(item_app_metadata);
             utilsCreateDirectoryTree(patch_path.c_str(), false);
